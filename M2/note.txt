@@ -1,0 +1,48 @@
+Open function for files:-
+file_object = open(file_name, [access_mode])
+
+Access_mode : - 
+r       - read only(default)
+rb      - read only in binary
+r+/w+   - Both reading and writing
+rb+/rb+ - Both reading and writing in binary
+w       - Create/Open file for writing
+wb      - Create/Open file for writing in binary
+a       - Open file for appending
+ab      - Open file for appending in binary
+a+      - Open file for reading and appending
+ab+     - Open file for reading and appending in binary
+
+>file_object.write(string) & file_object.read()
+>os.rename(current_file_name, new_file_name)
+
+
+Sequence are containers with items that are accessible by indexing or slicing. len() function takes any container as an argumment and returns the number of items in the container
+Sequence Operation:
+1. Concatenation
+2. Repetition
+3. Membership testing
+4. Slicing
+5. Indexing
+
+
+Type of sequence in Python:
+a. List
+b. Set
+c. Tuples
+d. Strings
+e. Dictionaries
+
+1. delete the element from list:
+del(list[2])
+
+2. pop - access the list item and return
+list.pop(3)
+
+3. remove - doesn't return anything. Just delete
+list.remove(3)
+
+
+
+
+
