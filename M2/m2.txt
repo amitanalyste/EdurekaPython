@@ -1,0 +1,52 @@
+---6----
+4
+---7----
+['john', 'peter']
+---8----
+def check_password(password: str) -> dict:
+    '''
+    :param password: String field satisfying password criteria
+    :return: dictionary containing details of password validation
+    Example:
+    >>> check_password("Amit@1984")
+    {'password_ok': True, 'lowercase_error': False, 'uppercase_error': False, 'number_error': False, 'specialCharacter_error': False, 'minLength_error': False, 'maxLength_error': False}
+    '''
+    # check for at least 1 letter
+    lowercase_error = re.search(r"[a-z]", password) is None
+
+    # check for at least 1 capital letter
+    uppercase_error = re.search(r"[A-Z]", password) is None
+
+    # check for at least 1 number
+    number_error = re.search(r"\d", password) is None
+
+    # check for atleast 1 special character
+    specialCharacter_error = sum(char in password for char in '$#@') == 0
+
+    l = len(password)
+    # length check
+    minLength_error = (l < 6)
+    maxLength_error = (l > 12)
+
+    password_ok = not(lowercase_error or uppercase_error or number_error or specialCharacter_error or minLength_error or maxLength_error)
+
+    return {
+        "password_ok": password_ok,
+        "lowercase_error": lowercase_error,
+        "uppercase_error": uppercase_error,
+        "number_error": number_error,
+        "specialCharacter_error": specialCharacter_error,
+        "minLength_error": minLength_error,
+        "maxLength_error": maxLength_error
+    }
+
+if __name__ == '__main__':
+
+    import doctest, re
+
+    print(doctest.testmod())
+    pwd = str(input("Enter a difficult password: "))
+    print(check_password(pwd))
+
+
+
