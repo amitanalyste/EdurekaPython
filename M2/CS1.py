@@ -1,5 +1,8 @@
 
 from collections import Counter
+import math
+from random import sample
+
 def check_password(password: str) -> dict:
     '''
     :param password: String field satisfying password criteria
@@ -86,7 +89,48 @@ def count_Charcter(s: str) -> dict:
     Counter({'a': 2, 'b': 2, 'c': 2, 'd': 1, 'e': 1, 'f': 1, 'g': 1})
     '''
     return Counter(list(s))
+def intersectionList(l1: list,l2: list) -> list:
+    '''
+    :param l1: input list 1
+    :param l2: input list 2
+    :return: return a list with matching element only
+    Example:
+    >>> intersectionList([1,3,6,78,35,55], [12,24,35,24,88,120,155])
+    [35]
+    '''
+    return [element for element in l1 if element in l2]
 
+def removeDuplicates(ls: list) -> list:
+    '''
+    :param ls: input list
+    :return: list after removing duplicates with original order reserved.
+    Example:
+    >>> removeDuplicates([12,24,35,24,88,120,155,88,120,155])
+    [12, 24, 35, 88, 120, 155]
+    '''
+    return list(Counter(ls))
+def hcf(n1: int, n2: int) -> int:
+    '''
+    :param n1: 1st integer
+    :param n2: 2nd integer
+    :return: an integer highest common factor of n1 and n2
+    example:
+    >>> hcf(10,5)
+    10
+    >>> hcf(3,2)
+    6
+    >>> hcf(6,14)
+    42
+    #hcf(14,6) => hcf(6, 14%6) =hcf(6,2) => hcf(2, 6%2)
+    '''
+    while(n2):
+        n1,n2 = n2,n1%n2
+    return n1
+def random_number(fromNumber=1, toNumber= 1000, n1=5, n2=7, k=5):
+    factor = hcf(n1,n2)
+    first_factor = math.ceil(fromNumber / factor)
+    last_factor = math.floor(toNumber / factor)
+    return [factor * x for x in sample(range(first_factor, last_factor+1), k=5)]
 
 
 if __name__ == '__main__':
@@ -110,7 +154,30 @@ if __name__ == '__main__':
     counter = count_Charcter(input("Enter string to count the occurrence of each character:"))
     for char in counter:
         print(f"{char},{counter[char]}")
-
+    most_common = counter.most_common(1)
+    print(f"Items in String - {list(counter)}")
+    print(f"Character most occured in String: {most_common[0][0]} and it occurred {most_common[0][1]} times!")
+    print("-----Problem13-----------")
+    l1 = input("Enter the element without any space separated by comma for list 1 for intersection:").split(',')
+    l2 = input("Enter the element without any space separated by comma for list 2 for intersection:").split(',')
+    print(f"Output of intersectionList(l1,l2) is: {intersectionList(l1, l2)}")
+    print("-----Problem14-----------")
+    lop = removeDuplicates([12,24,35,24,88,120,155,88,120,155])
+    print(f"removeDuplicates([12,24,35,24,88,120,155,88,120,155]) is giving output as: {lop}")
+    print("Problem15")
+    l = [12,24,35,24,88,120,155]
+    print([x for x in l if x != 24])
+    print("Problem16")
+    index_to_remove = (0, 4, 5)
+    [x for x in l if l.index(x) not in index_to_remove]
+    print("Problem17")
+    [x for x in l if not(x%5 == 0 or x%7 == 0)]
+    print("Problem18")
+    print(random_number())
+    print("Problem19")
+    acc = 0
+    n = int(input("Enter a number greater than 0:"))
+    print(f"{sum([(i + 1) / (i + 2) for i in range(n)]):.2f}")
 
 
 
